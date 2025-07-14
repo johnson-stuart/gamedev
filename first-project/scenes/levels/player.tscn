@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci2v4rt45q7w0"]
+
+[ext_resource type="Script" uid="uid://cpd0sk4hj6gxc" path="res://scenes/player/player.gd" id="1_5pofk"]
+[ext_resource type="Texture2D" uid="uid://2n5mfldwcme8" path="res://graphics/player/player.png" id="1_rggrj"]
+[ext_resource type="Script" uid="uid://oqksf5qn08ix" path="res://scenes/levels/laser_cooldown.gd" id="3_fdfyx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5pofk"]
+radius = 66.0
+height = 132.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 31
+script = ExtResource("1_5pofk")
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+position = Vector2(36, 19)
+rotation = 1.5708
+texture = ExtResource("1_rggrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("CapsuleShape2D_5pofk")
+
+[node name="LaserCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+script = ExtResource("3_fdfyx")
+
+[node name="GrenadeCooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+script = ExtResource("3_fdfyx")
+
+[node name="LaserStartPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(129, 37)
+
+[node name="Marker2D2" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(129, 26)
+
+[node name="Marker2D3" type="Marker2D" parent="LaserStartPositions"]
+position = Vector2(125, 51)
+
+[node name="GrenadeStartPosition" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="GrenadeStartPosition"]
+position = Vector2(2, 11)
+
+[connection signal="timeout" from="LaserCooldown" to="." method="_on_laser_cooldown_timeout"]
+[connection signal="timeout" from="GrenadeCooldown" to="." method="_on_laser_cooldown_timeout"]
+[connection signal="timeout" from="GrenadeCooldown" to="." method="_on_grenade_cooldown_timeout"]

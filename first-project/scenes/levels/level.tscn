@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=4 uid="uid://c3m26rb78usw2"]
+
+[ext_resource type="Script" uid="uid://sqb4h2npmwga" path="res://scenes/level.gd" id="1_urvlt"]
+[ext_resource type="Texture2D" uid="uid://wvnq82hqa0lg" path="res://graphics/ground/stones.png" id="2_xb4v1"]
+[ext_resource type="PackedScene" uid="uid://c8xy1eexd6uwf" path="res://scenes/objects/gate.tscn" id="3_b2cq8"]
+[ext_resource type="Texture2D" uid="uid://bq5ayq18l7pbq" path="res://graphics/decals/dirt_patch.png" id="3_d4w6o"]
+[ext_resource type="PackedScene" uid="uid://ci2v4rt45q7w0" path="res://scenes/levels/player.tscn" id="3_xb4v1"]
+[ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="4_mbbpy"]
+[ext_resource type="PackedScene" uid="uid://d16qmdc1f5w3m" path="res://scenes/houses/house.tscn" id="5_mbbpy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ouxo3"]
+resource_name = "walls"
+texture = ExtResource("4_mbbpy")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_icy5c"]
+tile_size = Vector2i(390, 390)
+sources/0 = SubResource("TileSetAtlasSource_ouxo3")
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_urvlt")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Soil" type="Sprite2D" parent="Ground"]
+texture_repeat = 2
+position = Vector2(439, 300)
+scale = Vector2(3.72064, 3.62162)
+texture = ExtResource("2_xb4v1")
+region_enabled = true
+region_rect = Rect2(-824.824, -466.971, 3710.16, 2506.35)
+
+[node name="Decoration" type="Sprite2D" parent="Ground"]
+position = Vector2(120, 146)
+scale = Vector2(2.26908, 2.43426)
+texture = ExtResource("3_d4w6o")
+
+[node name="Tilemap" type="TileMapLayer" parent="Ground"]
+use_parent_material = true
+position = Vector2(-4, -3)
+tile_map_data = PackedByteArray("AAADAAAAAAAAAAIAAAADAAEAAAAAAAIAAAADAP//AAAAAAIAAAD+////AAAAAAIAAAD+/wAAAAAAAAIAAAD+/wEAAAAAAAIAAAD+/wIAAAABAAIAAAADAAIAAAACAAIAAAD//wIAAAABAAAAAAAAAAIAAAABAAAAAAABAAIAAAABAAAAAAACAAIAAAABAAAAAAD+//7/AAABAAEAAAADAP7/AAACAAEAAAD///7/AAABAAAAAAAAAP7/AAABAAAAAAABAP7/AAABAAAAAAACAP7/AAABAAAAAAA=")
+tile_set = SubResource("TileSet_icy5c")
+
+[node name="House" parent="Ground" instance=ExtResource("5_mbbpy")]
+position = Vector2(-374, 709)
+rotation = 4.71239
+scale = Vector2(0.4, 0.4)
+
+[node name="Gate" parent="." instance=ExtResource("3_b2cq8")]
+position = Vector2(47, -93)
+scale = Vector2(0.5, 0.5)
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_xb4v1")]
+position = Vector2(300, 180)
+scale = Vector2(0.7, 0.7)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.7, 0.7)
+
+[connection signal="player_entered_gate" from="Gate" to="." method="_on_gate_player_entered_gate"]
+[connection signal="grenade" from="Player" to="." method="_on_player_grenade"]
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
