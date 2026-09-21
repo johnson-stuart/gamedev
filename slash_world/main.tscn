@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqp7g64n2xlg"]
+[gd_scene load_steps=9 format=3 uid="uid://bqp7g64n2xlg"]
 
 [ext_resource type="PackedScene" uid="uid://bx5p5vbdxg7u5" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dhweertk2f4dx" path="res://target_dummy.tscn" id="2_0xm2m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
 
@@ -41,3 +42,6 @@ camera_attributes = SubResource("CameraAttributesPractical_ig7tw")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25153, 1.5, 9.4381)
+
+[node name="dummy" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.913776, 0.592023, -0.408971)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhweertk2f4dx"]
+
+[ext_resource type="PackedScene" uid="uid://cudos4kkgfakl" path="res://target_dummy.glb" id="1_4dki3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qoivk"]
+radius = 0.20091
+height = 0.67399
+
+[node name="dummy" type="Node3D"]
+
+[node name="target_dummy" parent="." instance=ExtResource("1_4dki3")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.501227, 6.09632, 0.970203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_qoivk")
