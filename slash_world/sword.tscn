@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bltd73s3aybll"]
+
+[ext_resource type="PackedScene" uid="uid://dujqg07lhyut4" path="res://sword01.glb" id="1_74bdg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e4ynd"]
+radius = 0.295841
+height = 1.98987
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="sword01" parent="StaticBody3D" instance=ExtResource("1_74bdg")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(0.872312, -0.00908948, 0.488865, 0.0104194, 0.999946, -1.55113e-10, -0.488838, 0.00509369, 0.87236, 0, 1.0564, 0)
+shape = SubResource("CapsuleShape3D_e4ynd")
