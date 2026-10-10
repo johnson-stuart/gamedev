@@ -1,16 +1,4 @@
 extends CharacterBody3D
-# Third-person controller. Hold LEFT MOUSE BUTTON and drag to turn.
-# The player's body rotates left/right with the mouse, so the player always faces
-# the direction the camera is looking. The camera arm handles up/down tilt.
-#
-# Expected scene tree (node names must match exactly):
-#
-# Player (CharacterBody3D)   <- this script; turns left/right (yaw)
-#   CollisionShape3D
-#   MeshInstance3D
-#   CameraPivot (Node3D)          position (0, 1.5, 0), rotation (0, 0, 0)
-#     SpringArm3D                 spring_length 4, rotation (0, 0, 0)  -> up/down (pitch)
-#       Camera3D                  position (0, 0, 0), rotation (0, 0, 0)
 
 const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
@@ -20,19 +8,31 @@ const JUMP_VELOCITY := 4.5
 @export var max_pitch_deg := 30.0    # how far you can look up from below
 
 @onready var spring_arm: SpringArm3D = $CameraPivot/SpringArm3D
+@onready var back_socket: Node3D = $BackSocket
+@onready var ability_button: Button = $HUD/AbilityButton
 
 var orbiting := false
+var weapon: Node3D
+
+func equip(scene: PackedScene) -> void:
+	if weapon:
+		weapon.queue_free()
+	weapon = scene.instantiate()
+	back_socket.add_child(weapon)
+	ability_button.visible = true
 
 
 func _ready() -> void:
 	# Stop the camera arm from colliding with the player's own body
 	spring_arm.add_excluded_object(get_rid())
+	ability_button.visible = false
+	ability_button.pressed.connect(use_ability)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Hold left mouse button to turn. The cursor is hidden and locked while dragging,
+	# Hold right mouse button to turn. The cursor is hidden and locked while dragging,
 	# then returns when you let go.
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		orbiting = event.pressed
 		if orbiting:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -48,6 +48,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			deg_to_rad(min_pitch_deg),
 			deg_to_rad(max_pitch_deg)
 		)
+		
+	if event.is_action_pressed("ability_1"):
+		use_ability()
 
 
 func _physics_process(delta: float) -> void:
@@ -71,3 +74,9 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0.0, SPEED)
 
 	move_and_slide()
+	
+func use_ability() -> void:
+	if weapon == null:
+		return
+	print("Slam!")  # placeholder, the real slam comes next
+	

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bltd73s3aybll"]
+
+[ext_resource type="PackedScene" uid="uid://dujqg07lhyut4" path="res://sword01.glb" id="1_74bdg"]
+[ext_resource type="Script" uid="uid://b4xs6fe858ocs" path="res://weapon_pickup.gd" id="1_e4ynd"]
+[ext_resource type="PackedScene" uid="uid://o63sdi8rdoi" path="res://sword.tscn" id="2_ujbna"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_e4ynd"]
+radius = 0.71587
+
+[node name="SwordPickup" type="Area3D"]
+script = ExtResource("1_e4ynd")
+weapon_scene = ExtResource("2_ujbna")
+
+[node name="sword01" parent="." instance=ExtResource("1_74bdg")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.976526, 0.2154, 0, -0.2154, 0.976526, -0.00240362, 0.401945, 0)
+shape = SubResource("SphereShape3D_e4ynd")
+
+[node name="PickupPrompt" type="Label3D" parent="."]
+transform = Transform3D(0.0678236, 0, -0.997697, 0, 1, 0, 0.997697, 0, 0.0678236, 0, 2.29499, 0)
+visibility_range_end = 5.0
+billboard = 1
+text = "Press E to Equip"

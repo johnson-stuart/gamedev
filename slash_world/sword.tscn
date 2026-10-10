@@ -1,19 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bltd73s3aybll"]
+[gd_scene load_steps=4 format=3 uid="uid://o63sdi8rdoi"]
 
 [ext_resource type="PackedScene" uid="uid://dujqg07lhyut4" path="res://sword01.glb" id="1_74bdg"]
+[ext_resource type="Script" uid="uid://h46i58v4sywn" path="res://sword.gd" id="1_e4ynd"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e4ynd"]
-radius = 0.295841
-height = 1.98987
+[sub_resource type="BoxShape3D" id="BoxShape3D_74bdg"]
+size = Vector3(1.57599, 19.7157, 6.72284)
 
-[node name="Node3D" type="Node3D"]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="sword01" parent="StaticBody3D" instance=ExtResource("1_74bdg")]
+[node name="Sword" type="Node3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_e4ynd")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(0.872312, -0.00908948, 0.488865, 0.0104194, 0.999946, -1.55113e-10, -0.488838, 0.00509369, 0.87236, 0, 1.0564, 0)
-shape = SubResource("CapsuleShape3D_e4ynd")
+[node name="sword01" parent="." instance=ExtResource("1_74bdg")]
+
+[node name="sword01_hitbox" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sword01_hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.287997, 11.5997, 0.0132751)
+shape = SubResource("BoxShape3D_74bdg")
+debug_fill = false
