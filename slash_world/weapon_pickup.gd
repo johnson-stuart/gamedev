@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var weapon_scene: PackedScene  ## drag sword.tscn in here in the Inspector
+@export var weapon_scene: PackedScene
 
 var player_in_range: Node = null
 
