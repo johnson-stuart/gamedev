@@ -1,6 +1,6 @@
 # World
 
-The world is currently just one scene main.tscn consisting of a StaticBody3D rectangular floor mesh. 
+The world is currently just one scene main.tscn consisting of a StaticBody3D and a BoxMesh child.
 
 # Roadmap
 

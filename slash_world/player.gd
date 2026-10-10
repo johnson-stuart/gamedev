@@ -30,8 +30,6 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Hold right mouse button to turn. The cursor is hidden and locked while dragging,
-	# then returns when you let go.
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		orbiting = event.pressed
 		if orbiting:
@@ -40,9 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	elif event is InputEventMouseMotion and orbiting:
-		# Left/right: turn the whole player (the camera is a child, so it swings around too)
 		rotate_y(-event.relative.x * mouse_sensitivity)
-		# Up/down: tilt the spring arm, clamped so the camera can't flip over
 		spring_arm.rotation.x = clampf(
 			spring_arm.rotation.x - event.relative.y * mouse_sensitivity,
 			deg_to_rad(min_pitch_deg),
