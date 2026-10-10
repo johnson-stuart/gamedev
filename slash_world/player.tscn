@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx5p5vbdxg7u5"]
+[gd_scene load_steps=11 format=3 uid="uid://bx5p5vbdxg7u5"]
 
 [ext_resource type="Script" uid="uid://bckgpanjr6p11" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://b75mxbrxtp2ij" path="res://sword_slam_icon.png" id="2_onrkg"]
@@ -11,6 +11,123 @@
 albedo_color = Color(0.781962, 0.184639, 0.195861, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_onrkg"]
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "sword_move"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 45, 35)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandSocket:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.606174, -2.60434, -2.29213), Vector3(-0.588176, -2.58658, -2.29162), Vector3(-0.606174, -2.60434, -2.29213)]
+}
+
+[sub_resource type="Animation" id="Animation_i3pqv"]
+length = 0.01
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandSocket:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.606174, -2.60434, -2.29213)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HandSocket:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.50448, -0.0432361, 0.632315)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hqtel"]
+resource_name = "sword_slam"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HandSocket:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.50448, -0.0432361, 0.632315), Vector3(0.380584, 0.580517, 0.632315), Vector3(0.877733, -0.000801444, 0.455145)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandSocket:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.606174, -2.60434, -2.29213), Vector3(-0.606174, -1.74531, -2.29213), Vector3(1.01417, -1.21078, 2.94802)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.0141, 0), Vector3(0.772766, 1.5452, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hqtel"]
+_data = {
+&"RESET": SubResource("Animation_i3pqv"),
+&"sword_move": SubResource("Animation_onrkg"),
+&"sword_slam": SubResource("Animation_hqtel")
+}
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -36,10 +153,16 @@ margin = 0.1
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-4.37114e-08, 0.0871557, -0.996195, 0, 0.996195, 0.0871557, 1, 3.8097e-09, -4.35451e-08, -3.5, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [node name="BackSocket" type="Node3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -6.18172e-08, -0.707107, -0.707107, -6.18172e-08, -0.707107, 0.707107, -0.487815, 0.409189, 0.132223)
+
+[node name="HandSocket" type="Node3D" parent="."]
+transform = Transform3D(0.348404, -0.837684, -0.420594, -0.617135, -0.54273, 0.569727, -0.705521, 0.0610676, -0.706054, -0.50448, -0.0432361, 0.632315)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hqtel")
+}
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

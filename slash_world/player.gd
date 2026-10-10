@@ -9,7 +9,9 @@ const JUMP_VELOCITY := 4.5
 
 @onready var spring_arm: SpringArm3D = $CameraPivot/SpringArm3D
 @onready var back_socket: Node3D = $BackSocket
+@onready var hand_socket: Node3D= $HandSocket
 @onready var ability_button: Button = $HUD/AbilityButton
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 var orbiting := false
 var weapon: Node3D
@@ -48,6 +50,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ability_1"):
 		use_ability()
 
+func _update_walk_animation() -> void:
+	var moving := is_on_floor() and Vector2(velocity.x, velocity.z).length() > 0.1
+	var sword_in_hand := weapon != null and weapon.get_parent() == hand_socket
+	if moving and sword_in_hand:
+		if anim.current_animation != "sword_move":
+			anim.play("sword_move")
+	elif anim.current_animation == "sword_move":
+		anim.play("RESET")
 
 func _physics_process(delta: float) -> void:
 	# Gravity
@@ -70,9 +80,11 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0.0, SPEED)
 
 	move_and_slide()
+	_update_walk_animation()
 	
 func use_ability() -> void:
 	if weapon == null:
 		return
-	print("Slam!")  # placeholder, the real slam comes next
+	weapon.reparent(hand_socket, false)
+	anim.play("sword_slam")
 	
