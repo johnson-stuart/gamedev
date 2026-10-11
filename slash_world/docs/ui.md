@@ -11,6 +11,8 @@ The HUD so far is a **CanvasLayer** node inside of player.gd with a **Button** c
 
 # Roadmap
 
+10/10/26
+
 - Start Screen
 - Pause Menu
 - Inventory

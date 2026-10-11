@@ -12,30 +12,6 @@ albedo_color = Color(0.781962, 0.184639, 0.195861, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_onrkg"]
 
-[sub_resource type="Animation" id="Animation_onrkg"]
-resource_name = "sword_move"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 45, 35)
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("HandSocket:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.606174, -2.60434, -2.29213), Vector3(-0.588176, -2.58658, -2.29162), Vector3(-0.606174, -2.60434, -2.29213)]
-}
-
 [sub_resource type="Animation" id="Animation_i3pqv"]
 length = 0.01
 tracks/0/type = "position_3d"
@@ -80,6 +56,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "sword_move"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 45, 35)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HandSocket:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.606174, -2.60434, -2.29213), Vector3(-0.588176, -2.58658, -2.29162), Vector3(-0.606174, -2.60434, -2.29213)]
 }
 
 [sub_resource type="Animation" id="Animation_hqtel"]
@@ -157,7 +157,7 @@ transform = Transform3D(-4.37114e-08, 0.0871557, -0.996195, 0, 0.996195, 0.08715
 transform = Transform3D(-1, 8.74228e-08, 0, -6.18172e-08, -0.707107, -0.707107, -6.18172e-08, -0.707107, 0.707107, -0.487815, 0.409189, 0.132223)
 
 [node name="HandSocket" type="Node3D" parent="."]
-transform = Transform3D(0.348404, -0.837684, -0.420594, -0.617135, -0.54273, 0.569727, -0.705521, 0.0610676, -0.706054, -0.50448, -0.0432361, 0.632315)
+transform = Transform3D(0.3484, -0.837685, -0.420596, -0.617136, -0.542728, 0.569727, -0.705522, 0.061072, -0.706052, -0.50448, -0.0432361, 0.632315)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
