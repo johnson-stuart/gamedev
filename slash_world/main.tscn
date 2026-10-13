@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqp7g64n2xlg"]
+[gd_scene load_steps=11 format=3 uid="uid://bqp7g64n2xlg"]
 
 [ext_resource type="PackedScene" uid="uid://bltd73s3aybll" path="res://sword_pickup.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bx5p5vbdxg7u5" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ckayeoyva8u2e" path="res://sphere_enemy.tscn" id="3_h2yge"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
+albedo_color = Color(0.738255, 0.734032, 0.711057, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ig7tw"]
 
@@ -32,6 +35,7 @@ shadow_enabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 40, 0, 0, 0)
 mesh = SubResource("BoxMesh_7dm0k")
+surface_material_override/0 = SubResource("StandardMaterial3D_h2yge")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(40, 0, 0, 0, 1, 0, 0, 0, 40, 0, 0, 0)
@@ -45,7 +49,7 @@ camera_attributes = SubResource("CameraAttributesPractical_ig7tw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83769, 1.48231, 12.234)
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-transform = Transform3D(0.183295, 0, 0, 0, 0.183295, 0, 0, 0, 0.183295, -1.12127, 0.658124, 9.96266)
+transform = Transform3D(0.183295, 0, 0, 0, 0.183295, 0, 0, 0, 0.183295, -1.12127, 0.558201, 9.96266)
 
 [node name="sphere_enemy" parent="." instance=ExtResource("3_h2yge")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.4537, 1.92139, 2.31131)
