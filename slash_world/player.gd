@@ -20,11 +20,16 @@ const SPRING_ARM_LENGTH := 40
 @onready var player_anim: AnimationPlayer = $player_character/AnimationPlayer
 @onready var player_character: Node3D = $player_character
 @onready var spring_arm: Node3D = $SpringArm3D
+@onready var hp_bar: ProgressBar = $HUD/hp_bar
+@onready var power_bar: ProgressBar = $HUD/power_bar
+
 
 var orbiting := false
 var weapon: Node3D
 var target_position: Vector3
 var target_zoom: float
+var max_hp = 100
+var max_power = 100
 
 func plane_intersect(event: InputEvent):
 	# Data
@@ -55,6 +60,8 @@ func _ready() -> void:
 	ability_button.pressed.connect(use_ability)
 	target_position = global_position
 	target_zoom = SPRING_ARM_LENGTH
+	hp_bar.max_value = max_hp
+	power_bar.max_value = max_power
 
 func _unhandled_input(event: InputEvent) -> void:
 		
@@ -76,6 +83,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		if event.button_mask == MOUSE_BUTTON_LEFT and event.is_pressed() and !event.is_echo():
 			plane_intersect(event)
+			
 
 func _physics_process(delta: float) -> void:
 	
@@ -112,5 +120,8 @@ func _physics_process(delta: float) -> void:
 func use_ability() -> void:
 	if weapon == null:
 		return
+	power_bar.value -= 10
 	weapon.reparent(hand_socket, false)
+	
+	
 	

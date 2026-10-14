@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx5p5vbdxg7u5"]
+[gd_scene load_steps=9 format=3 uid="uid://bx5p5vbdxg7u5"]
 
 [ext_resource type="Script" uid="uid://bckgpanjr6p11" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://djvcpei3qw3o0" path="res://player_character.glb" id="2_i3pqv"]
@@ -6,6 +6,19 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hqtel"]
 size = Vector3(1, 7.74823, 3.58655)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3pqv"]
+bg_color = Color(0, 0, 0, 0.529412)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
+bg_color = Color(0.676579, 0, 0.0920197, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0, 0, 0, 0.215686)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0, 0.388151, 0.926611, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -148,9 +161,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -325.0
+offset_left = -1121.0
 offset_top = -83.0
-offset_right = -280.0
+offset_right = -1076.0
 offset_bottom = -38.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -167,11 +180,46 @@ icon = ExtResource("2_onrkg")
 icon_alignment = 1
 expand_icon = true
 
+[node name="hp_bar" type="ProgressBar" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -68.0
+offset_right = 114.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1, 0.719999)
+theme_override_styles/background = SubResource("StyleBoxFlat_i3pqv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hqtel")
+value = 100.0
+show_percentage = false
+
+[node name="power_bar" type="ProgressBar" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -115.0
+offset_top = -44.0
+offset_right = -111.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(54.9718, 0.932663)
+theme_override_styles/background = SubResource("StyleBoxFlat_2hs0m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sweqy")
+value = 100.0
+show_percentage = false
+
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0.642788, -0.766044, 0, 0.766044, 0.642788, 1, 2.80971e-08, -3.34849e-08, 0, 5.40688, 0)
 spring_length = 40.0
 
 [node name="player_camera" type="Camera3D" parent="SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [editable path="player_character"]

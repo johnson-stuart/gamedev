@@ -18,6 +18,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_l3g5v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("SphereShape3D_jqe48")
+disabled = true
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.700841, 0)

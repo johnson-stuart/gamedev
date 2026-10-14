@@ -8,3 +8,7 @@ The world is currently just one scene main.tscn consisting of a StaticBody3D and
 
 - Add verticality to the world
 - Add indoor areas
+
+14/10/26
+
+- Player starts in a house, exits house into chalice dungeon like instances, comes back to store loot etc. 
