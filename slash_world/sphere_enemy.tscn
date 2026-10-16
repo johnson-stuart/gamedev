@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckayeoyva8u2e"]
+[gd_scene load_steps=8 format=3 uid="uid://ckayeoyva8u2e"]
 
 [ext_resource type="Script" uid="uid://dj7rnc5we8687" path="res://enemy.gd" id="1_l3g5v"]
 
@@ -14,7 +14,10 @@ radius = 0.528398
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l3g5v"]
-bg_color = Color(0.750448, 0, 0.112852, 1)
+bg_color = Color(0.625353, 0.0310157, 0.0608825, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l3g5v"]
+viewport_path = NodePath("SubViewport")
 
 [node name="sphere_enemy" type="Node3D"]
 script = ExtResource("1_l3g5v")
@@ -29,9 +32,17 @@ surface_material_override/0 = SubResource("StandardMaterial3D_l3g5v")
 shape = SubResource("SphereShape3D_jqe48")
 disabled = true
 
-[node name="hp_bar" type="ProgressBar" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(70, 10)
+
+[node name="hp_bar" type="ProgressBar" parent="SubViewport"]
 offset_right = 72.0
 offset_bottom = 13.0
 theme_override_styles/background = SubResource("StyleBoxFlat_0tjna")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l3g5v")
 show_percentage = false
+
+[node name="hp_bar_sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.743367, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_l3g5v")
