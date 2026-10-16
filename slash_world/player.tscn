@@ -11,14 +11,15 @@ size = Vector3(1, 7.74823, 3.58655)
 bg_color = Color(0, 0, 0, 0.529412)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqtel"]
+resource_local_to_scene = true
 bg_color = Color(0.676579, 0, 0.0920197, 1)
 border_color = Color(0.8, 0.8, 0.8, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
-bg_color = Color(0, 0, 0, 0.215686)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
-bg_color = Color(0, 0.388151, 0.926611, 1)
+bg_color = Color(0, 0, 0, 0.0392157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0.134274, 0.217655, 0.818904, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_4flbx")
@@ -186,10 +187,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -114.0
-offset_top = -68.0
-offset_right = 114.0
-offset_bottom = -41.0
+offset_left = -92.0
+offset_top = -68.9999
+offset_right = 108.0
+offset_bottom = -41.9999
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1, 0.719999)
@@ -204,15 +205,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -115.0
-offset_top = -44.0
-offset_right = -111.0
-offset_bottom = -17.0
+offset_left = -92.0
+offset_top = -51.0
+offset_right = 108.0
+offset_bottom = -41.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(54.9718, 0.932663)
-theme_override_styles/background = SubResource("StyleBoxFlat_2hs0m")
-theme_override_styles/fill = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/background = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2hs0m")
 value = 100.0
 show_percentage = false
 

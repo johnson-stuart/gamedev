@@ -30,6 +30,9 @@ var target_position: Vector3
 var target_zoom: float
 var max_hp = 100
 var max_power = 100
+var base_power_regen_rate = 10
+var power_regen_timer = 5
+var in_combat := false
 
 func plane_intersect(event: InputEvent):
 	# Data
@@ -68,7 +71,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ability_1"):
 		use_ability()
 		
-	if event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_RIGHT:
+	if event is InputEventMouseMotion and event.button_mask & MOUSE_BUTTON_MASK_MIDDLE:
 		spring_arm.rotation.y -= event.relative.x * mouse_sensitivity
 		spring_arm.rotation.x -= event.relative.y * mouse_sensitivity
 		spring_arm.rotation.x = clamp(spring_arm.rotation.x, -tilt_limit, 0.0)
@@ -78,13 +81,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			target_zoom = clamp(target_zoom - zoom_step, zoom_min, zoom_max)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			target_zoom = clamp(target_zoom + zoom_step, zoom_min, zoom_max)
-		
-func _input(event: InputEvent) -> void:
+	
 	if event is InputEventMouse:
 		if event.button_mask == MOUSE_BUTTON_LEFT and event.is_pressed() and !event.is_echo():
 			plane_intersect(event)
-			
-
+	
+	
 func _physics_process(delta: float) -> void:
 	
 	spring_arm.spring_length = lerp(spring_arm.spring_length, target_zoom, zoom_smoothing * delta)
@@ -113,14 +115,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED)
 		velocity.z = move_toward(velocity.z, 0.0, SPEED)
 		player_anim.play("Idle")
-
+		
+	
 	move_and_slide()
 	
+func _process(delta: float) -> void:
+	if power_bar.value < 100 and !in_combat:
+		power_bar.value += base_power_regen_rate*delta
 	
 func use_ability() -> void:
 	if weapon == null:
 		return
-	power_bar.value -= 10
+	power_bar.value -= 50
 	weapon.reparent(hand_socket, false)
 	
 	
